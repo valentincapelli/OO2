@@ -1,5 +1,5 @@
 Ejercicio 1
-1.1 Se podria mejorar asignandole a los metodos nomres mas descriptivos.
+1.1 Se podria mejorar asignandole a los metodos nombres mas descriptivos.
 Ejemplo:
 /** 
 * Retorna el límite de crédito del cliente
@@ -16,7 +16,8 @@ protected double montoFacturadoAlClienteEntre(LocalDate f1, LocalDate f2) {...
 */
 private double montoCobradoAlClienteEntre(LocalDate f1, LocalDate f2) {...
 
-1.2 Bad smell: feature envy (envidia de atributos).
+1.2 Mala asignacion de responsabilidad del metodo.
+Bad smell: feature envy (envidia de atributos).
 Refactoring a aplicar: move method.
 El cambio que se realizo fue un Move Method refactoring. Y esta bien
 aplicado, ya que el metodo participaEnProyecto usa datos de la clase Proyecto
@@ -26,18 +27,148 @@ trabajo con los datos dentro de sus misma clase, y no habria mas envidad de
 atributos.
 
 1.3
-Situacion 1:
+public void imprimirValores() {
+	int totalEdades = 0;
+	double promedioEdades = 0;
+	double totalSalarios = 0;
+	
+	for (Empleado empleado : personal) {
+		totalEdades = totalEdades + empleado.getEdad();
+		totalSalarios = totalSalarios + empleado.getSalario();
+	}
+	promedioEdades = totalEdades / personal.size();
+		
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
+	
+	System.out.println(message);
+}
+
+
+Paso 1:
 Bad smell: long method.
-Refactoring a aplicar: extract method y replace temp with query.
+Refactoring a aplicar: extract method.
 
-Situacion 2:
+public void imprimirValores() {
+	int totalEdades = 0;
+	double promedioEdades = 0;
+	double totalSalarios = 0;
+	
+    this.calcularTotales(totalEdades, totalSalarios);
+
+	promedioEdades = totalEdades / personal.size();
+		
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
+	
+	System.out.println(message);
+}
+
+public void calcularTotales(int edades, double salarios) {
+    for (Empleado empleado : personal) {
+		edades = edades + empleado.getEdad();
+		salarios = salarios + empleado.getSalario();
+	}
+}
+
+Paso 2:
+
+public void imprimirValores() {
+	int totalEdades = 0;
+	double promedioEdades = 0;
+	double totalSalarios = 0;
+	
+    this.calcularTotalEdad(totalEdades);
+    this.calcularTotalSalarios(totalSalarios);
+
+	promedioEdades = totalEdades / personal.size();
+		
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
+	
+	System.out.println(message);
+}
+
+public void calcularTotalEdad(int edades) {
+    for (Empleado empleado : personal) {
+		edades = edades + empleado.getEdad();
+	}
+}
+
+public void calcularTotalSalario(double salarios) {
+    for (Empleado empleado : personal) {
+		salarios = salarios + empleado.getSalario();
+	}
+}
+
+Paso 3:
 Bad smell: reinventa la rueda.
-Refactoring a aplicar: replace loop with pipeline.
+Refactoring: reemplazar loop por un pipeline
 
-Consultar temporary field.
+public void imprimirValores() {
+	int totalEdades = 0;
+	double promedioEdades = 0;
+	double totalSalarios = 0;
+	
+    totalEdades = this.calcularTotalEdad();
+    totalSalarios = this.calcularTotalSalarios();
+
+	promedioEdades = totalEdades / personal.size();
+		
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", promedioEdades, totalSalarios);
+	
+	System.out.println(message);
+}
+
+public int calcularTotalEdades() {
+    return this.personal.stream()
+        .mapToInt(empleado -> empleado.getEdad()).sum();
+}
+
+public double calcularTotalSalarios() {
+    return this.personal.stream()
+        .mapToDouble(empleado -> empleado.getSalario()).sum();
+}
+
+Paso 4: 
+Bad smell: temporary fields.
+Refactoring a aplicar: replace temp with query.
+
+public void imprimirValores() {		
+	String message = String.format("El promedio de las edades es %s y el total de salarios es %s", this.calcularPromedioEdades(),
+         this.calcularTotalSalarios());
+
+	System.out.println(message);
+}
+
+public double calcularPromedioEdades() {
+    this.personal.stream()
+        .mapToDouble(empleado -> empleado.getEdad()).average().orElse(0);
+}
+
+public double calcularTotalSalarios() {
+    return this.personal.stream()
+        .mapToDouble(empleado -> empleado.getSalario()).sum();
+}
+
+Paso 5:
+
+public void imprimirValores() {		
+	System.out.println(String.format("El promedio de las edades es %s y el total de salarios es %s", this.calcularPromedioEdades(),
+         this.calcularTotalSalarios()));
+}
+
+public double calcularPromedioEdades() {
+    this.personal.stream()
+        .mapToDouble(empleado -> empleado.getEdad()).average().orElse(0);
+}
+
+public double calcularTotalSalarios() {
+    return this.personal.stream()
+        .mapToDouble(empleado -> empleado.getSalario()).sum();
+}
 
 Ejercicio 2
 2.1
+
+Paso 1:
 Bad smell: duplicate code
 Refactoring a aplicar: push up field y push up method.
 
@@ -45,45 +176,141 @@ public abstract class Empleado {
     public String nombre;
     public String apellido;
     public double sueldoBasico = 0;
-    // ......
     
-public abstract double sueldo();
-
+    public double sueldo() {
+        return this.sueldoBasico();
+    }
 }
 
 public class EmpleadoTemporario {
     public double horasTrabajadas = 0;
     public int cantidadHijos = 0;
-    // ......
     
     public double sueldo() {
-        return this.sueldoBasico
+        return super.sueldo()
             + (this.horasTrabajadas * 500) 
             + (this.cantidadHijos * 1000) 
-            -(this.sueldoBasico * 0.13);
+            - (super.sueldo * 0.13);
     }
 }
 
 
 public class EmpleadoPlanta {
     public int cantidadHijos = 0;
-    // ......
     
     public double sueldo() {
-        return this.sueldoBasico 
+        return super.sueldo() 
             + (this.cantidadHijos * 2000)
-            - (this.sueldoBasico * 0.13);
+            - (super.sueldo() * 0.13);
     }
 }
 
 public class EmpleadoPasante {
-    public String nombre;
-    public String apellido;
-    public double sueldoBasico = 0;
-    // ......
-    
     public double sueldo() {
-        return this.sueldoBasico - (this.sueldoBasico * 0.13);
+        return super.sueldo() - (super.sueldo() * 0.13);
+    }
+}
+
+Paso 2:
+Mejora de codigo (No es refactoring, modifico comportamiento)
+Bad smell: variables publicas
+Solucion: las paso a privadas o protected.
+
+public abstract class Empleado {
+    private String nombre;
+    private String apellido;
+    private double sueldoBasico = 0;
+    
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return this.sueldoBasico();
+    }
+}
+
+public class EmpleadoTemporario {
+    private double horasTrabajadas = 0;
+    private int cantidadHijos = 0;
+    
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return super.sueldo()
+            + (this.horasTrabajadas * 500) 
+            + (this.cantidadHijos * 1000) 
+            - (super.sueldo * 0.13);
+    }
+}
+
+
+public class EmpleadoPlanta {
+    public int cantidadHijos = 0;
+
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return super.sueldo() 
+            + (this.cantidadHijos * 2000)
+            - (super.sueldo() * 0.13);
+    }
+}
+
+public class EmpleadoPasante {
+    public double sueldo() {
+        return super.sueldo() - (super.sueldo() * 0.13);
+    }
+}
+
+Paso 3:
+Bad smell: codigo repetido
+Refactoring a aplicar: push up method calcularSubMontoSueldoBasico
+
+public abstract class Empleado {
+    private String nombre;
+    private String apellido;
+    private double sueldoBasico = 0;
+    
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return this.sueldoBasico();
+    }
+
+    public double calcularSubMontoSueldoBasico() {
+        return super.sueldoBasico() * 0.13;
+    }
+}
+
+public class EmpleadoTemporario {
+    private double horasTrabajadas = 0;
+    private int cantidadHijos = 0;
+    
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return super.sueldo()
+            + (this.horasTrabajadas * 500) 
+            + (this.cantidadHijos * 1000) 
+            - super.calcularSubMontoSueldoBasico();
+    }
+}
+
+
+public class EmpleadoPlanta {
+    public int cantidadHijos = 0;
+
+    // Metodos primitivos publicos
+
+    public double sueldo() {
+        return super.sueldo() 
+            + (this.cantidadHijos * 2000)
+            - super.calcularSubMontoSueldoBasico();
+    }
+}
+
+public class EmpleadoPasante {
+    public double sueldo() {
+        return super.sueldo() - super.calcularSubMontoSueldoBasico();
     }
 }
 
