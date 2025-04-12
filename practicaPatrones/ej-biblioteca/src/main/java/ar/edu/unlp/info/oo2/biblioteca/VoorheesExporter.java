@@ -2,6 +2,8 @@ package ar.edu.unlp.info.oo2.biblioteca;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 public class VoorheesExporter {
 
 	private String exportar(Socio socio) {
@@ -13,7 +15,7 @@ public class VoorheesExporter {
 			+ "\t}";
 	}
 
-	public String exportar(List<Socio> socios) {
+	public String exportar(List<Socio> socios) throws JsonProcessingException {
 		if (socios.isEmpty()) {
 			return "[]";
 		}
