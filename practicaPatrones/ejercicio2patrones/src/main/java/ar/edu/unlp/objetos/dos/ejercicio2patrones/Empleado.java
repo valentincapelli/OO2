@@ -4,6 +4,7 @@ public abstract class Empleado {
 	private boolean estaCasado;
 	private int cantidadDeHijos;
 	
+	
 	public Empleado(boolean estaCasado, int cantidadDeHijos) {
 		this.estaCasado = estaCasado;
 		this.cantidadDeHijos = cantidadDeHijos;
@@ -15,7 +16,7 @@ public abstract class Empleado {
 				- this.sueldoDescuento();
 	}
 	
-	public Double sueldoBasico() {
+	public Double sueldoBasico() { // lo deberia implementar cada uno
 		return 20000.0;
 	}
 	
@@ -23,7 +24,7 @@ public abstract class Empleado {
 		return this.sueldoBasico() * 0.13 + this.sueldoAdicional() * 0.05;
 	}
 	
-	public Double sueldoAdicional() {
+	public Double sueldoAdicional() { // pasar este metodo a clase intermedia abstracta
 		System.out.print("aqui llegue");
 		double result = 0;
 		if (this.isEstaCasado())

@@ -1,0 +1,10 @@
+shira es un tablon de cosas por hacer
+pueden haber metodos que no hacen nada y queden vacios, esta bien.
+
+Explicacion ejercicios 10, 11, 12, 13, 14, 15.
+
+Ejercicio 11: usar composite.
+El orden de las topografias es importante.
+Cada topografia mixta tiene otras 4 topografias.
+
+Ejercicio 13: 

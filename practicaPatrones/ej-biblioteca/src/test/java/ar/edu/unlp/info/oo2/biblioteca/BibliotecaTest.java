@@ -2,6 +2,7 @@ package ar.edu.unlp.info.oo2.biblioteca;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +25,7 @@ public class BibliotecaTest {
 		
 		System.out.println("Formato json manual");
 		System.out.println(biblioteca.exportarSocios());
+		JSONParser JsonManual = new JSONParser();
 		
 		System.out.println("Formato json con JSON adapter");
 		biblioteca.setExporter(new JsonAdapter());
@@ -32,6 +34,7 @@ public class BibliotecaTest {
 		System.out.println("Formato json con Jackson adapter");
 		biblioteca.setExporter(new JacksonAdapter());
 		System.out.println(biblioteca.exportarSocios());
+		
 		
 		// CONSULTAR TEST
 		
