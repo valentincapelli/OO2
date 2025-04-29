@@ -8,3 +8,12 @@ El orden de las topografias es importante.
 Cada topografia mixta tiene otras 4 topografias.
 
 Ejercicio 13: 
+
+Explicacion semana 28 abril - ejercicios 16 17 18 19 20
+
+ejercicio 16: decorator
+
+ejercicio 17: proxy - protection proxy
+
+ejercicio 18: decorator
+
