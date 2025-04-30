@@ -3,6 +3,7 @@ package ar.edu.unlp.info.oo2.ejercicio6patrones;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Excursion {
 	private String nombre;
@@ -34,8 +35,8 @@ public class Excursion {
 		return this.situacion.ofrecerInformacion(this);
 	}
 
-	public void inscribirUsuario(Usuario usuario, Excursion excursion) {
-		this.situacion.inscribirUsuario(usuario, excursion);
+	public void inscribir(Usuario usuario) {
+		this.situacion.inscribir(usuario, this);
 	}
 	
 	protected void setSituacion(Situacion situacion) {
@@ -91,7 +92,8 @@ public class Excursion {
 	}
 	
 	public String getMailsDeInscriptos() {
-		return null;
-		
+		return this.usuariosInscriptos.stream()
+				.map(usuario -> usuario.getEmail())
+				.collect(Collectors.toList()).toString();
 	}
 }
