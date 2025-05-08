@@ -1,4 +1,4 @@
-package ar.edu.unlp.objetos.dos.ejercicio11patrones;
+package ar.edu.unlp.info.oo2.ejercicio16patrones;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

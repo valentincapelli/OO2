@@ -6,8 +6,10 @@ Explicacion ejercicios 10, 11, 12, 13, 14, 15.
 Ejercicio 11: usar composite.
 El orden de las topografias es importante.
 Cada topografia mixta tiene otras 4 topografias.
+(CONSULTAR sobre los remove y los add en el composite, si se deben implementar en este caso y como) 
+RTA: depende del dominio, no es todos los casos voy a tener agregar y eliminar composite.
 
-Ejercicio 13: 
+Ejercicio 13: usar builder.
 
 Explicacion semana 28 abril - ejercicios 16 17 18 19 20
 
@@ -17,3 +19,16 @@ ejercicio 17: proxy - protection proxy
 
 ejercicio 18: decorator
 
+Usamos strategy cuando el contexto es el que decide cuando cambiar la estrategia
+
+Usamos state cuando los mismos estados deciden cuando se debe cambiar de estado
+
+
+Explicacion practica 5 de mayo
+
+Refactoring to patterns: hacerlo paso a paso hacia cierto patron. Ej refactoring to strategy.
+
+Ejercicio 21: usar null object pattern 
+    Elimina todos los condcionales que verifican si la referencia a un objeto es null.
+    Hace explicitos elementos del dominio que hacen "nada".
+    No nos deberia quedar "retorn null" explicitos, usaremos el null object en su lugar.
