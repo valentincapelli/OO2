@@ -2,13 +2,13 @@ package ar.edu.unlp.objetos.dos.ejercicio18patrones;
 
 import java.time.LocalDate;
 
-public class FileDecorator implements FileComponent{
+public abstract class FileDecorator implements FileComponent{
 	private FileComponent component;
 	
 	public FileDecorator(FileComponent component) {
 		this.component = component;
 	}
-	
+		
 	@Override
 	public String prettyPrint() {
 		return this.component.prettyPrint();
@@ -43,5 +43,8 @@ public class FileDecorator implements FileComponent{
 	public String getPermisos() {
 		return this.component.getPermisos();
 	}
-
+	
+	protected FileComponent getComponent() {
+		return this.component;
+	}
 }
