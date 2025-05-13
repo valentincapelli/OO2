@@ -15,11 +15,6 @@ public abstract class FileDecorator implements FileComponent{
 	}
 
 	@Override
-	public String getNombre() {
-		return this.component.getNombre();
-	}
-
-	@Override
 	public String getExtension() {
 		return this.component.getExtension();
 	}

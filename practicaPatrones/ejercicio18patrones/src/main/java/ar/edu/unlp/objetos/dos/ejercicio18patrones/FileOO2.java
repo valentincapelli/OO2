@@ -18,11 +18,6 @@ public class FileOO2 implements FileComponent{
 		this.fechaModificacion = fechaModificacion;
 		this.permisos = permisos;
 	}
-
-	@Override
-	public String getNombre() {
-		return nombre;
-	}
 	
 	@Override
 	public String getExtension() {
@@ -51,7 +46,7 @@ public class FileOO2 implements FileComponent{
 	
 	@Override
 	public String prettyPrint() {
-		return this.getNombre();
+		return this.nombre;
 	}
 	
 }

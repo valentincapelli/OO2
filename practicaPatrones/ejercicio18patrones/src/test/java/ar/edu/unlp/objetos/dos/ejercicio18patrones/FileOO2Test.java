@@ -14,8 +14,6 @@ public class FileOO2Test {
 	@BeforeEach
 	public void setUp() {
 		this.fileOO2 = new FileOO2("fabio", ".py", "50 kb", LocalDate.of(2025, 2, 10), LocalDate.of(2025, 5, 3), "escritura, lectura, modificacion");
-		// que hace esta linea ??? CONSULTAR
-		this.decoratorNombre = new DecoratorNombre(this.fileOO2); 
 	}
 	
 	@Test
