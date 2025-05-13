@@ -32,3 +32,17 @@ Ejercicio 21: usar null object pattern
     Elimina todos los condcionales que verifican si la referencia a un objeto es null.
     Hace explicitos elementos del dominio que hacen "nada".
     No nos deberia quedar "retorn null" explicitos, usaremos el null object en su lugar.
+
+Explicacion practica 12 de mayo
+
+Ejercicio 22:
+
+Como documentar un refactoring?
+    Indicar mal olor
+    Indicar el refactoring que los corrige
+    Aplicar el refactoring,  mostrando el reultado final
+    Si vuelve a encontrar un mal olor, retorne al paso 1
+
+Frameworks ejercicio 1:
+    
+
