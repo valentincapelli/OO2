@@ -11,7 +11,8 @@ public class Mamifero implements IMamifero {
 	private IMamifero madre;
 	
 	public Mamifero() {
-		
+		this.padre = new NullMamifero();
+		this.madre = new NullMamifero();		
 	}
 
 	@Override

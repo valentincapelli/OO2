@@ -40,7 +40,7 @@ public class NullMamifero implements IMamifero{
 
 	@Override
 	public IMamifero getPadre() {
-		return null;
+		return this;
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class NullMamifero implements IMamifero{
 
 	@Override
 	public IMamifero getMadre() {
-		return null;
+		return this;
 	}
 
 	@Override
@@ -60,22 +60,22 @@ public class NullMamifero implements IMamifero{
 
 	@Override
 	public IMamifero getAbueloMaterno() {
-		return null;
+		return this;
 	}
 
 	@Override
 	public IMamifero getAbuelaMaterna() {
-		return null;
+		return this;
 	}
 
 	@Override
 	public IMamifero getAbueloPaterno() {
-		return null;
+		return this;
 	}
 
 	@Override
 	public IMamifero getAbuelaPaterno() {
-		return null;
+		return this;
 	}
 
 	@Override
