@@ -20,10 +20,6 @@ public abstract class PCBuilder {
 	public abstract void crearGrafica();
 	public abstract void crearGabinete();
 	
-	public PC getResult() {
-		return this.pc;
-	}
-	
 	public PC getPc() {
 		return pc;
 	}

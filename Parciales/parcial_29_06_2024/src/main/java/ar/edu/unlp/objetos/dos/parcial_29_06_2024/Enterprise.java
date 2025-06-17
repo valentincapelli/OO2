@@ -11,6 +11,6 @@ public class Enterprise {
 		builder.crearDisco();
 		builder.crearGrafica();
 		builder.crearGabinete();
-		return builder.getResult();
+		return builder.getPc();
 	}
 }
