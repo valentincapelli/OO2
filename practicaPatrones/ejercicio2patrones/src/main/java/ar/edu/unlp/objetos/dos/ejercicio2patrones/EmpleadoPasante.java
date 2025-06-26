@@ -3,8 +3,8 @@ package ar.edu.unlp.objetos.dos.ejercicio2patrones;
 public class EmpleadoPasante extends Empleado{
 	private int cantidadDeExamenesQueRindio;
 	
-	public EmpleadoPasante(boolean estaCasado, int cantidadDeHijos, int cantidadDeExamenesQueRindio) {
-		super(estaCasado, cantidadDeHijos);
+	public EmpleadoPasante(boolean estaCasado, int cantidadDeExamenesQueRindio) {
+		super(estaCasado);
 		this.cantidadDeExamenesQueRindio = cantidadDeExamenesQueRindio;
 	}
 

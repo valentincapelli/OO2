@@ -1,6 +1,6 @@
 package ar.edu.unlp.objetos.dos.ejercicio2patrones;
 
-public class EmpleadoTemporario extends Empleado{
+public class EmpleadoTemporario extends EmpleadoConHijos{
 	private int horasTrabajadas;
 
 	public EmpleadoTemporario(boolean estaCasado, int cantidadDeHijos, int horasTrabajadas) {

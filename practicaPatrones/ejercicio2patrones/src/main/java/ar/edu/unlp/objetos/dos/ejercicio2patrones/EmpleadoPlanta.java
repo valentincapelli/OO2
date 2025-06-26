@@ -1,6 +1,6 @@
 package ar.edu.unlp.objetos.dos.ejercicio2patrones;
 
-public class EmpleadoPlanta extends Empleado{
+public class EmpleadoPlanta extends EmpleadoConHijos{
 	private int añosDeAntiguedad;
 
 	public EmpleadoPlanta(boolean estaCasado, int cantidadDeHijos, int añosDeAntiguedad) {

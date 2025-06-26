@@ -12,9 +12,9 @@ public class EmpleadoPasanteTest {
 	
 	@BeforeEach
 	public void setUp() {
-		empleadoSinExamenes = new EmpleadoPasante(true, 0, 0);
-		empleadoConUnExamen = new EmpleadoPasante(true, 0, 1);
-		empleadoConDosExamenes = new EmpleadoPasante(true, 0, 2);
+		empleadoSinExamenes = new EmpleadoPasante(true, 0);
+		empleadoConUnExamen = new EmpleadoPasante(true, 1);
+		empleadoConDosExamenes = new EmpleadoPasante(true, 2);
 	}
 	
 

@@ -2,12 +2,10 @@ package ar.edu.unlp.objetos.dos.ejercicio2patrones;
 
 public abstract class Empleado {
 	private boolean estaCasado;
-	private int cantidadDeHijos;
 	
 	
-	public Empleado(boolean estaCasado, int cantidadDeHijos) {
+	public Empleado(boolean estaCasado) {
 		this.estaCasado = estaCasado;
-		this.cantidadDeHijos = cantidadDeHijos;
 	}
 
 	public Double sueldo() {
@@ -25,12 +23,9 @@ public abstract class Empleado {
 	}
 	
 	public Double sueldoAdicional() { // pasar este metodo a clase intermedia abstracta
-		System.out.print("aqui llegue");
 		double result = 0;
 		if (this.isEstaCasado())
 			result = 5000;
-		if (this.cantidadDeHijos > 0)
-			result = result + (this.cantidadDeHijos * 2000);
 		return result;
 	}
 
@@ -38,7 +33,4 @@ public abstract class Empleado {
 		return estaCasado;
 	}
 
-	public int getCantidadDeHijos() {
-		return cantidadDeHijos;
-	}
 }
